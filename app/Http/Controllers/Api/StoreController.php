@@ -40,7 +40,13 @@ class StoreController extends Controller
      */
     public function show($id)
     {
-        //
+        $store = Store::find($id);
+
+        if ($store) {
+            return response()->json($store, 200);
+        }
+
+        return response()->json(['errors' => 'Not Found'], 404);
     }
 
     /**
