@@ -16,7 +16,9 @@ class StoreController extends Controller
      */
     public function index()
     {
-        //
+        $stores = Store::with('products')->paginate();
+
+        return response()->json($stores, 200);
     }
 
     /**

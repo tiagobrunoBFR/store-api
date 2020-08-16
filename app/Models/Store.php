@@ -10,4 +10,9 @@ class Store extends Model
         'name',
         'email'
     ];
+
+    public function products()
+    {
+        return $this->hasMany(Product::class);
+    }
 }
