@@ -5,18 +5,27 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Store\StoreRequest;
 use App\Models\Store;
+use App\Repositories\Contracts\StoreRepositoryInterface;
+use App\Repositories\StoreRepository;
 use Illuminate\Http\Request;
 
 class StoreController extends Controller
 {
+    private $storeRepository;
+
+    public function __construct(StoreRepositoryInterface $storeRepository)
+    {
+        $this->storeRepository = $storeRepository;
+    }
+
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $stores = Store::with('products')->paginate();
+        $stores = $this->storeRepository->list($request);
 
         return response()->json($stores, 200);
     }
@@ -29,7 +38,7 @@ class StoreController extends Controller
      */
     public function store(StoreRequest $request)
     {
-        $store = Store::create($request->all());
+        $store = $this->storeRepository->create($request);
 
         return response()->json($store, 201);
     }
@@ -42,7 +51,7 @@ class StoreController extends Controller
      */
     public function show($id)
     {
-        $store = Store::find($id);
+        $store = $this->storeRepository->find($id);
 
         if ($store) {
             return response()->json($store, 200);
@@ -60,11 +69,9 @@ class StoreController extends Controller
      */
     public function update(StoreRequest $request, $id)
     {
-        $store = Store::find($id);
+        $store = $this->storeRepository->update($id, $request);
 
         if ($store) {
-            $store->update($request->all());
-
             return response()->json($store, 200);
         }
 
@@ -79,11 +86,9 @@ class StoreController extends Controller
      */
     public function destroy($id)
     {
-        $store = Store::find($id);
+        $store = $this->storeRepository->delete($id);
 
         if ($store) {
-            $store->delete();
-
             return response()->json([], 204);
         }
 
