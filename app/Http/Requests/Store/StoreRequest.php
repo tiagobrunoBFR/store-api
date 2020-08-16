@@ -5,6 +5,7 @@ namespace App\Http\Requests\Store;
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Exceptions\HttpResponseException;
+use Illuminate\Http\Request;
 
 class StoreRequest extends FormRequest
 {
@@ -21,13 +22,14 @@ class StoreRequest extends FormRequest
     /**
      * Get the validation rules that apply to the request.
      *
+     * @param Request $request
      * @return array
      */
-    public function rules()
+    public function rules(Request $request)
     {
         return [
             'name' => 'required|string|max:40|min:3',
-            'email' => 'required|string|email|unique:stores,email'
+            'email' => 'required|string|email|unique:stores,email,'. $request->route('id')
         ];
     }
 
