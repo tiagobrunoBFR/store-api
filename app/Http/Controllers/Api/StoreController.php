@@ -77,6 +77,14 @@ class StoreController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $store = Store::find($id);
+
+        if ($store) {
+            $store->delete();
+
+            return response()->json([], 204);
+        }
+
+        return response()->json(['errors' => 'Not Found'], 404);
     }
 }
