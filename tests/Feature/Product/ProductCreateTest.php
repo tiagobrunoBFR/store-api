@@ -27,7 +27,7 @@ class ProductCreateTest extends TestCase
 
         $data = [
             'name' => $this->faker->name,
-            'price' => $this->faker->randomFloat(2, 2, 6),
+            'price' => $this->faker->randomFloat(2, 10, 999999),
             'store_id' => $store_id,
             'active' => $this->faker->boolean
         ];
@@ -100,7 +100,7 @@ class ProductCreateTest extends TestCase
                 ],
                 'inputErro' => 'price'
             ],
-            'when the name has more than 6 character' => [
+            'when the price has more than 6 digits' => [
                 'data' => [
                     'name' => 'teste',
                     'price' => 1123333,
