@@ -42,4 +42,36 @@ class StoreIndexTest extends TestCase
         $responseArray = json_decode($response->getContent());
         $this->assertEquals(0, $responseArray->total);
     }
+
+    /**
+     * @test
+     */
+    public function should_search_store_by_name_and_return_status_code_200_and_store_searched()
+    {
+        factory(Store::class)->create(['name' => 'adidas']);
+
+        $data = [
+            'name' => 'adidas',
+        ];
+
+        $response = $this->json('GET', $this::BASE_URL . $this::STORES, $data);
+        $response->assertStatus(200)
+            ->assertJson(['data' => [['name' => 'adidas']]]);
+    }
+
+    /**
+     * @test
+     */
+    public function should_search_store_by_email_and_return_status_code_200_and_store_searched()
+    {
+        factory(Store::class)->create(['email' => 'adidas@email.com']);
+
+        $data = [
+            'email' => 'adidas@email.com',
+        ];
+
+        $response = $this->json('GET', $this::BASE_URL . $this::STORES, $data);
+        $response->assertStatus(200)
+            ->assertJson(['data' => [['email' => 'adidas@email.com']]]);
+    }
 }
