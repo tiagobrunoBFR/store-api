@@ -27,7 +27,7 @@ class ProductRequest extends FormRequest
     {
         return [
             'name' => 'required|string|max:60|min:3',
-            'price' => 'required|numeric|max:6|min:2',
+            'price' => 'required|numeric|between:10,999999',
             'store_id' => 'required|exists:stores,id',
             'active' => 'required|boolean'
         ];
