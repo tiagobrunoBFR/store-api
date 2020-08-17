@@ -10,5 +10,6 @@ abstract class TestCase extends BaseTestCase
 
     const BASE_URL = '/api/v1';
     const STORES = '/stores';
+    const PRODUCTS = '/products';
 
 }

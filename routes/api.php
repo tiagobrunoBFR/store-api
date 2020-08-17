@@ -16,5 +16,8 @@ use Illuminate\Support\Facades\Route;
 
 Route::prefix('v1')->namespace('Api')->group(function () {
 
-    Route::apiResource('stores', 'StoreController');
+    Route::apiResources([
+        'stores' => 'StoreController',
+        'products' => 'ProductController'
+    ]);
 });
