@@ -4,7 +4,7 @@ Store control is a api for products control
 
 ## Mental map
  
-- **[ http://www.xmind.net/m/zLRNvV]( http://www.xmind.net/m/zLRNvV)** 
+- **[ http://www.xmind.net/m/5SBsgD]( http://www.xmind.net/m/5SBsgD)** 
 
 ## Tools
  
@@ -49,3 +49,8 @@ You need to configure the .env file steps
 - GET    | api/v1/products/{store}
 - PUT    | api/v1/products/{store}
 - DELETE | api/v1/products/{store}
+
+## Todos
+
+- Helper reponse
+- Product and Store with data resources
