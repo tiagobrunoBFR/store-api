@@ -2,7 +2,7 @@
 
 namespace App\Repositories\Contracts;
 
-interface StoreRepositoryInterface
+interface ProductRepositoryInterface
 {
     public function create(object $request);
 

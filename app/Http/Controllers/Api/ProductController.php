@@ -5,18 +5,26 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Product\ProductRequest;
 use App\Models\Product;
+use App\Repositories\Contracts\ProductRepositoryInterface;
+use App\Repositories\ProductRepository;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
+    private $productRepository;
+    public function __construct(ProductRepositoryInterface $productRepository)
+    {
+        $this->productRepository = $productRepository;
+    }
+
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $products = Product::paginate();
+        $products = $this->productRepository->list($request);
 
         return response()->json($products, 200);
     }
@@ -29,7 +37,7 @@ class ProductController extends Controller
      */
     public function store(ProductRequest $request)
     {
-        $product = Product::create($request->all());
+        $product = $this->productRepository->create($request);
 
         return response()->json($product, 201);
     }
@@ -42,7 +50,7 @@ class ProductController extends Controller
      */
     public function show($id)
     {
-        $product = Product::find($id);
+        $product = $this->productRepository->find($id);
         if ($product) {
             return response()->json($product, 200);
         }
@@ -59,10 +67,8 @@ class ProductController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $product = Product::find($id);
+        $product = $this->productRepository->update($id, $request);
         if ($product) {
-            $product->update($request->all());
-
             return response()->json($product, 200);
         }
 
@@ -77,9 +83,8 @@ class ProductController extends Controller
      */
     public function destroy($id)
     {
-        $product = Product::find($id);
+        $product = $this->productRepository->delete($id);
         if ($product) {
-            $product->delete();
             return response()->json($product, 204);
         }
 
