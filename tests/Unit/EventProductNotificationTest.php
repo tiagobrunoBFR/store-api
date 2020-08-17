@@ -4,11 +4,13 @@ namespace Tests\Unit;
 
 use App\Events\EventNotificationProductCreate;
 use App\Models\Product;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 use Illuminate\Support\Facades\Event;
 
 class EventProductNotificationTest extends TestCase
 {
+    use RefreshDatabase;
     /**
      * @test
      */

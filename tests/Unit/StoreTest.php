@@ -2,11 +2,14 @@
 
 namespace Tests\Unit;
 
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 use Illuminate\Database\Eloquent\Collection;
 
 class StoreTest extends TestCase
 {
+    use RefreshDatabase;
+
     /**
      * @test
      */
