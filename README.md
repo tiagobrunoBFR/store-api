@@ -32,6 +32,10 @@ You need to configure the .env file steps
 
 - php artisan test
 
+## CI with Github Action 
+
+<p><img src="https://github.com/tiagobrunoBFR/store-api/workflows/Laravel%20Workflow/badge.svg"> </p>
+
 ## Endpoints
 
 #### Store
