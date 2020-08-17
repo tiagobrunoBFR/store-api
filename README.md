@@ -61,4 +61,3 @@ You need to configure the .env file steps
 ## Todos
 
 - Helper reponse
-- Product and Store with data resources

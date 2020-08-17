@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Store\StoreRequest;
+use App\Http\Resources\StoreResource;
 use App\Models\Store;
 use App\Repositories\Contracts\StoreRepositoryInterface;
 use App\Repositories\StoreRepository;
@@ -27,7 +28,7 @@ class StoreController extends Controller
     {
         $stores = $this->storeRepository->list($request);
 
-        return response()->json($stores, 200);
+        return StoreResource::collection($stores);
     }
 
     /**

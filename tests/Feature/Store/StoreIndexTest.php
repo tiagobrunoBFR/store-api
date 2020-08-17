@@ -28,7 +28,7 @@ class StoreIndexTest extends TestCase
 
         $response->assertStatus(200);
         $responseArray = json_decode($response->getContent());
-        $this->assertEquals(30, $responseArray->total);
+        $this->assertEquals(30, $responseArray->meta->total);
     }
 
     /**
@@ -40,7 +40,7 @@ class StoreIndexTest extends TestCase
 
         $response->assertStatus(200);
         $responseArray = json_decode($response->getContent());
-        $this->assertEquals(0, $responseArray->total);
+        $this->assertEquals(0, $responseArray->meta->total);
     }
 
     /**

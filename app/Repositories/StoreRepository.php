@@ -4,6 +4,7 @@ namespace App\Repositories;
 
 use App\Models\Store;
 use App\Repositories\Contracts\StoreRepositoryInterface;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Collection;
 
 class StoreRepository implements StoreRepositoryInterface
@@ -71,7 +72,9 @@ class StoreRepository implements StoreRepositoryInterface
         }
 
         if ($withProducts) {
-            $stores->with('products');
+            $stores->with(['products' => function (HasMany $hasMany) {
+                $hasMany->where('active', 1);
+            }]);
         }
 
         if ($paginate) {
