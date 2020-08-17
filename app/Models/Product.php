@@ -19,7 +19,11 @@ class Product extends Model
         'active',
     ];
 
-
+    public function getPriceAttribute($value)
+    {
+        $value = 'R$ '.number_format($value, 2, ',', '.');
+        return $this->attributes['price'] = $value;
+    }
 
     public function store()
     {
