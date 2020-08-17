@@ -18,7 +18,8 @@ You need to configure the .env file steps
 
 - 1 create config email dispatch when new product is created and updated, add MAIL_FROM_ADDRESS to your .env with an email valid
 - 2 config MAIL_USERNAME and MAIL_PASSWORD to send email (I used **[https://mailtrap.io/inboxes](https://mailtrap.io/inboxes)**)
-- 3 config your database in .env
+- 3 config QUEUE_CONNECTION (I used database)
+- 4 config your database in .env
 
 ## Run Project
 
