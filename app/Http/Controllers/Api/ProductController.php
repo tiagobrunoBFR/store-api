@@ -40,7 +40,12 @@ class ProductController extends Controller
      */
     public function show($id)
     {
-        //
+        $product = Product::find($id);
+        if ($product) {
+            return response()->json($product, 200);
+        }
+
+        return response()->json(['errors' => 'Not Found'], 404);
     }
 
     /**
