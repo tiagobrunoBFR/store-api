@@ -29,6 +29,9 @@ You need to configure the .env file steps
 - php artisan config:clear
 - php artisan serve
 
+## Run Queue
+- php artisan queue:work
+
 ## Run Tests
 
 - php artisan test
